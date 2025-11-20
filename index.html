@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | Jessica Taylor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">
+            <img src="./image/TestLogo@2x.png" alt="Logo">
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#"><img src="./image/home_FILL0_wght300_GRAD0_opsz24@2x.png" alt="Overview"> Overview</a></li>
+            <li><a href="#" class="active"><img src="./image/group_FILL0_wght300_GRAD0_opsz24@2x.png" alt="Patients"> Patients</a></li>
+            <li><a href="#"><img src="./image/BirthIcon@2x.png" alt="Schedule"> Schedule</a></li>
+            <li><a href="#"><img src="./image/chat_bubble_FILL0_wght300_GRAD0_opsz24@2x.png" alt="Message"> Message</a></li>
+            <li><a href="#"><img src="./image/credit_card_FILL0_wght300_GRAD0_opsz24@2x.png" alt="Transactions"> Transactions</a></li>
+        </ul>
+        
+        <div class="user-profile">
+            <img class="user-avatar" src="./image/doctor.png" alt="Dr. Jose">
+            <div class="user-info">
+                <span class="user-name">Dr. Jose Simmons</span>
+                <span class="user-role">General Practitioner</span>
+            </div>
+            <img class="settings-icon" src="./image/settings_FILL0_wght300_GRAD0_opsz24.svg" alt="Settings">
+            <img class="settings-icon" src="./image/more_vert_FILL0_wght300_GRAD0_opsz24.svg" alt="Settings">
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="dashboard-grid">
+            
+            <aside class="patient-list-card card">
+                <div class="patient-list-header">
+                    <h3>Patients</h3>
+                    <img src="./image/search_FILL0_wght300_GRAD0_opsz24@2x.png" alt="Search" class="search-icon">
+                </div>
+                <ul class="patient-list">
+                    <li><img src="./image/Layer 8@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Emily Williams</span><span class="patient-gender-age">Female, 18</span></div><span class="more-dots" ><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 1@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Ryan Johnson</span><span class="patient-gender-age">Male, 45</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 3@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Brandon Mitchell</span><span class="patient-gender-age">Male, 36</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    
+                    <li class="active">
+                        <img src="./image/Layer 2@2x.png" alt="Patient" id="list-patient-pic">
+                        <div class="patient-list-info">
+                            <span class="patient-name">Jessica Taylor</span>
+                            <span id="list-patient-info">Female, 28</span>
+                        </div>
+                        <span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span>
+                    </li>
+
+                    <li><img src="./image/Layer 6@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Samantha Johnson</span><span class="patient-gender-age">Female, 56</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 12@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Ashley Martinez</span><span class="patient-gender-age">Female, 54</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 10@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Olivia Brown</span><span class="patient-gender-age">Female, 32</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 9@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Tyler Davis</span><span class="patient-gender-age">Male, 19</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 4@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Kevin Anderson</span><span class="patient-gender-age">Male, 30</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 5@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Dylan Thompson</span><span class="patient-gender-age">Male, 36</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/Layer 7@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Nathan Evans</span><span class="patient-gender-age">Male, 58</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                    <li><img src="./image/pexels-photo-1222271@2x.png" alt="Patient"><div class="patient-list-info"><span class="patient-name">Mike Nolan</span><span class="patient-gender-age">Male, 31</span></div><span class="more-dots"><img src="./image/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="Dots"></span></li>
+                </ul>
+            </aside>
+
+            <section class="middle-column">
+                <div class="diagnosis-history-card card">
+                    <h3>Diagnosis History</h3>
+                    
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h4>Blood Pressure</h4>
+                            <div class="period-dropdown">
+                                Last 6 months ▼
+                            </div>
+                        </div>
+
+                        <div class="chart-content-container"> 
+                            
+                            <div class="chart-canvas-container">
+                                <canvas id="bpChart"></canvas>
+                            </div>
+
+                            <div class="bp-readings-panel">
+                                <div class="bp-reading systolic">
+                                    <div class="label-line">
+                                        <span class="indicator-dot"></span>
+                                        <span>Systolic</span>
+                                    </div>
+                                    <div class="value" id="bp-systolic-value">160</div>
+                                    <div class="status">
+                                        <span class="arrow">▲</span> 
+                                        <span id="bp-systolic-status">Higher than Average</span>
+                                    </div>
+                                </div>
+
+                                <div class="bp-reading diastolic">
+                                    <div class="label-line">
+                                        <span class="indicator-dot"></span>
+                                        <span>Diastolic</span>
+                                    </div>
+                                    <div class="value" id="bp-diastolic-value">78</div>
+                                    <div class="status">
+                                        <span class="arrow">▼</span> 
+                                        <span id="bp-diastolic-status">Lower than Average</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    <div class="vitals-grid">
+                        <div class="vital-item">
+                            <img src="./image/respiratory rate.svg" alt="Respiratory">
+                            <div class="vital-label">Respiratory Rate</div>
+                            <div class="vital-value" id="resp-value">20 bpm</div>
+                            <div class="vital-status" id="resp-status">Normal</div> 
+                        </div>
+                        <div class="vital-item">
+                            <img src="./image/temperature.svg" alt="Temperature">
+                            <div class="vital-label">Temperature</div>
+                            <div class="vital-value" id="temp-value">98.6°F</div>
+                            <div class="vital-status" id="temp-status">Normal</div>
+                        </div>
+                        <div class="vital-item">
+                            <img src="./image/HeartBPM@2x.png" alt="Heart Rate">
+                            <div class="vital-label">Heart Rate</div>
+                            <div class="vital-value" id="hr-value">78 bpm</div>
+                            <div class="vital-status">
+                                <span class="arrow">▼</span> 
+                                    <span id="hr-status">Lower than Average</span>
+                                     </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagnostic-list-card card">
+                    <h3>Diagnostic List</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Problem/Diagnosis</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="diag-list-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <aside class="right-column">
+                <div class="profile-card card">
+                    <div class="profile-header">
+                        <img class="profile-pic" src="./image/Layer 2@2x.png" alt="Patient Profile Picture">
+                        <h4 id="patient-name">Jessica Taylor</h4>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <span class="detail-label"><img src="./image/BirthIcon@2x.png" alt="DOB"> Date of Birth</span>
+                            <span class="detail-value" id="patient-dob">August 23, 1996</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label"><img src="./image/FemaleIcon@2x.png" alt="Gender"> Gender</span>
+                            <span class="detail-value" id="patient-gender">Female</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label"><img src="./image/PhoneIcon@2x.png" alt="Contact"> Contact Info</span>
+                            <span class="detail-value" id="patient-contact">(415) 555-1234</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label"><img src="./image/PhoneIcon@2x.png" alt="Emergency"> Emergency Contact</span>
+                            <span class="detail-value" id="patient-emergency">(415) 555-5678</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label"><img src="./image/InsuranceIcon@2x.png" alt="Insurance"> Insurance Provider</span>
+                            <span class="detail-value" id="patient-insurance">Sunrise Health Assurance</span>
+                        </div>
+                    </div>
+                    <button class="profile-button">Show All Information</button>
+                </div>
+
+                <div class="lab-results-card card">
+                    <h3>Lab Results</h3>
+                    <div class="lab-results-scroll">
+                    <ul id="lab-results-list">
+                    </ul>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+/* --- 1. Global & Font Setup --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Manrope", Arial, sans-serif;
+    /* Main Background: Light Gray (#F7F8FC) */
+    background-color: #f7f8fc;
+    display: flex;
+    flex-direction: column;
+    /* Full height setup to enable grid filling the viewport */
+    height: 1195px;
+    /* Main Text Color: Dark Blue/Navy (#072635) */
+    color: #072635;
+    font-size: 14px; /* Standard body text size */
+}
+
+/* --- 2. Top Navigation Bar --- */
+.sidebar {
+    width: 97%; 
+    max-width: 1564px; 
+    height: 72px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    /* Exact border radius from design */
+    border-radius: 70px; 
+    display: flex;
+    align-items: center;
+    padding: 0 32px; 
+    flex-shrink: 0;
+    /* Exact top/bottom margin for alignment */
+    margin: 18px auto; 
+}
+
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    /* Logo text color */
+    color: #072635;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.sidebar .logo img { 
+    height: 30px; 
+    vertical-align: middle;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    /* Subtle Gray Link Color (#6B7280) */
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 24px;
+    transition: background-color 0.1s;
+}
+
+.nav-links a img { 
+    width: 18px;
+    height: 18px;
+}
+
+.nav-links a.active {
+    color: #072635;
+    /* Primary Accent Color (#01F0D0) */
+    background-color: #01f0d0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    line-height: 1.2;
+}
+.user-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+.user-role {
+    font-size: 12px;
+    color: #6b7280;
+}
+.settings-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+
+/* --- 3. Main Layout & 4. Dashboard Grid (Crucial Alignment) --- */
+.main-content {
+    flex-grow: 1;
+    overflow-y: hidden;
+    /* Padding matches sidebar spacing on sides, and gap on bottom */
+    padding: 0 24px 24px 24px;
+}
+
+.dashboard-grid {
+    /* Precise column widths matching the design */
+    grid-template-columns: 280px 1fr 300px;
+    display: grid;
+    /* Exact gap for vertical and horizontal spacing */
+    gap: 24px;
+    max-width: 1564px; 
+    margin: 0 auto;
+    /* Fix height to fill remaining space (100vh - sidebar - top margin - bottom padding) */
+    height: calc(100vh - 72px - 18px - 24px); 
+}
+
+/* Base Card Styling */
+.card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    /* Default padding, overridden below */
+    padding: 24px; 
+    overflow: hidden; 
+}
+
+/* Middle and Right Columns Containers */
+.middle-column, .right-column {
+    /* CRITICAL: Must be 100% height to contain its children correctly */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+.middle-column::-webkit-scrollbar {
+    width: 6px;
+}
+.middle-column::-webkit-scrollbar-thumb {
+    background: #CBC8D4;
+    border-radius: 3px;
+}
+/* --- 5. Patient List (Left Column) --- */
+.patient-list-card {
+    /* Override base card padding to match the design's inner spacing */
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    /* NEW REQUIREMENT: Fixed height 1054px */
+    height: 1054px; 
+    max-height: 1054px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    /* The list area itself must scroll */
+    overflow-y: auto; 
+}
+
+.patient-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 16px 10px; 
+    flex-shrink: 0; 
+}
+
+.patient-list-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.patient-list-header img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.patient-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    justify-content: space-between; 
+    transition: background-color 0.1s;
+}
+
+.patient-list li:hover {
+    background-color: #f7f8fc;
+}
+
+.patient-list li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.patient-list-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto; 
+    flex-grow: 1; 
+    line-height: 1.2;
+    left: 38px;
+width: 317px;
+height: 48px;
+}
+
+.more-dots img{ 
+    font-size: 20px;
+    line-height: 10px;
+    color: #6b7280;
+    cursor: pointer;
+    flex-shrink: 0; 
+    padding-left: 10px; 
+}
+
+.patient-list li.active {
+    /* Active patient background color (#D8FCF7) - slightly lighter than the active nav link */
+    background-color: #D8FCF7;
+    /* Adjust margin/padding to make it full width within the card and align padding */
+    margin: 0 -10px; 
+    padding: 12px 20px; 
+}
+
+.patient-list li.active:hover {
+    background-color: #D8FCF7;
+}
+
+.patient-list li span.patient-name {
+    font-weight: 700;
+    font-size: 15px;
+     color: #072635;
+    display: block;
+    
+    
+}
+
+.patient-list li span.patient-gender-age {
+    font-size: 13px;
+    color: #707070;
+    left: 98px;
+width: 66px;
+height: 19px;
+font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-manrope);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-707070);
+text-align: left;
+font: normal normal normal 14px/19px Manrope;
+letter-spacing: 0px;
+color: #707070;
+}
+
+
+/* --- 7. Diagnosis History Card (Chart Wrapper & Vitals) --- */
+.diagnosis-history-card {
+    padding: 32px; 
+    /* CRITICAL: Fixed height 673px requirement */
+    flex-shrink: 0; 
+    height: 673px; 
+    flex-grow: 0;
+     margin-bottom: 32px;
+}
+.diagnosis-history-card h3 {
+    font-size: 24px; 
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+/* Chart Wrapper Background */
+.chart-wrapper {
+   
+    background-color: #F2ECFD; 
+    border-radius: 16px;
+    padding: 20px 20px 10px 20px;
+    position: relative;
+    height: 298px; 
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-header {
+     position: relative;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 10px; 
+     padding: 0 8px; 
+}
+
+.chart-header h4 {
+    font-size: 18px; 
+    font-weight: 700;
+    color: #072635;
+}
+
+.period-dropdown {
+     position: absolute;
+    right: 12px;
+    top: 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Chart Content Layout */
+.chart-content-container {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.chart-canvas-container {
+   width: 417px;
+   height: 187px;
+    flex-grow: 1; 
+    /* This calculation is vital to allocate space for the readings panel */
+    flex-basis: calc(100% - 200px); 
+    flex-shrink: 0;
+    padding-top: 0; 
+}
+
+/* Readings Panel */
+.bp-readings-panel {
+    width: 180px; 
+    padding-left: 20px;
+    border-left: 1px solid #E6E6E6; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    gap: 20px;
+}
+
+.bp-reading {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+.bp-reading .label-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #072635;
+    margin-bottom: 4px;
+}
+
+.bp-reading .indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Systolic & Diastolic Line/Dot Colors */
+.bp-reading.systolic .indicator-dot {
+    background-color: #C27CE5; /* Purple */
+}
+
+.bp-reading.diastolic .indicator-dot {
+    background-color: #8C6FE0; /* Lavender */
+}
+
+.bp-reading .value {
+    font-size: 22px; /* Adjusted size for better fit */
+    font-weight: 800;
+    color: #072635;
+    margin-left: 18px; 
+    margin-bottom: 4px; 
+    line-height: 1;
+}
+
+.bp-reading .status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-left: 18px; 
+}
+
+.bp-reading .status .arrow {
+    font-size: 10px;
+    line-height: 1;
+}
+
+.bp-reading.systolic .status .arrow {
+    color: #072635; 
+}
+.bp-reading.diastolic .status .arrow {
+    color: #072635; 
+}
+
+/* Vitals Grid */
+.vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.vital-item {
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Specific Card Colors */
+.vital-item:nth-child(1) { background-color: #D8EEF9; } /* Blue */
+.vital-item:nth-child(2) { background-color: #FBE7E9; } /* Light Red/Pink */
+.vital-item:nth-child(3) { background-color: #FCE7ED; } /* Pink */
+
+.vital-item img { 
+    background-color: #FFFFFF; 
+    width: 86px;
+    height: 86px;
+    border-radius: 50%; 
+    padding: 16px;
+    margin-bottom: 4px;
+    object-fit: contain;
+}
+
+.vital-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #072635; 
+}
+
+.vital-value {
+    font-size: 30px; 
+    font-weight: 800; 
+    color: #072635;
+}
+
+.vital-status { 
+    font-size: 14px; 
+    color: #072635;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+}
+
+/* --- 8. Diagnostic List Card (Refined Table Styling) --- */
+.diagnostic-list-card {
+    padding: 32px;
+    /* CRITICAL: Fixed height 349px requirement */
+    height: 349px;
+    flex-grow: 0; 
+    flex-shrink: 0; 
+    /* CRITICAL: Set as flex container to manage scrolling children */
+    display: flex; 
+    flex-direction: column;
+    /* Allows it to shrink correctly inside the flex parent (.middle-column) */
+    min-height: 0; 
+}
+
+.diagnostic-list-card h3 {
+    font-size: 24px; 
+    font-weight: 800; 
+    margin-bottom: 24px;
+    /* Ensure header does not scroll */
+    flex-shrink: 0; 
+}
+
+.diagnostic-list-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    /* Ensures table stretches correctly and manages scrolling children */
+    table-layout: fixed; 
+    /* CRITICAL: Enables flex management for table header and body */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+.diagnostic-list-card th {
+    /* Ensure the header row doesn't scroll */
+    flex-shrink: 0; 
+}
+
+.diagnostic-list-card tbody {
+    /* CRITICAL: Makes the body scrollable and fills the remaining height */
+    overflow-y: auto; 
+    display: block; 
+    flex-grow: 1;
+}
+
+
+.diagnostic-list-card tbody tr {
+    /* CRITICAL: Ensures table rows match the fixed widths of the header cells */
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.diagnostic-list-card table tbody {
+    display: block;
+    height: 250px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.diagnostic-list-card th {
+    padding: 18px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6b7280;
+    /* Subtle header background color */
+    background-color: #F8F9FB; 
+    padding: 12px 16px; 
+    text-align: left;
+    border-radius: 8px 8px 0 0; /* Rounded corners on table header */
+}
+
+/* Ensure the background color covers the full width including gaps */
+.diagnostic-list-card thead tr {
+    background-color: #F8F9FB;
+    border-radius: 8px 8px 0 0;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+/* Ensure the first and last column widths are appropriate for the table */
+.diagnostic-list-card th:first-child,.diagnostic-list-card td:nth-child(1) { width: 30%;
+padding-left: 28px; }
+.diagnostic-list-card th:nth-child(2), .diagnostic-list-card td:nth-child(2) { width: 50%;
+padding-left: 28px; }
+.diagnostic-list-card td:last-child {
+    text-align: right;
+    padding-right: 32px;
+}
+.diagnostic-list-card td:nth-child(3) { width: 20%; 
+padding-left: 20px;}
+
+
+.diagnostic-list-card td {
+    padding: 18px 24px;
+    font-size: 14px;
+    /* Lighter border for subtlety */
+    border-bottom: 1px solid #EDEDED;
+    font-weight: 500;
+    color: #072635;
+    text-align: left;
+    vertical-align: top;
+}
+
+.diagnostic-list-card tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- 9. Profile Card (Patient Card) --- */
+.profile-card {
+    /* CRITICAL: Fixed height 740px requirement */
+    height: 740px; 
+    flex-shrink: 0;
+    flex-grow: 0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    object-fit: cover;
+}
+
+.profile-header h4 {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.profile-header span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.profile-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.detail-label img {
+    /* Adjusted icon size */
+    width: 20px; 
+    height: 20px;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 700; /* Bold for the value */
+    margin-left: 28px; /* Increased margin for icon alignment */
+    color: #072635;
+}
+
+.profile-button {
+    background-color: #01f0d0;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #072635;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+/* --- 10. Lab Results Card --- */
+.lab-results-card h3 {
+    
+    font-size: 24px; 
+    font-weight: 800;
+    margin-bottom: 16px;
+
+}
+.lab-results-card {
+    padding: 32px 24px;
+    /* CRITICAL: Fixed height 296px requirement */
+    height: 296px; 
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.lab-results-scroll {
+    height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+
+
+.lab-results-card ul {
+    list-style: none;
+    padding: 0;
+   
+}
+
+.lab-results-card li {
+    padding: 10px 0; 
+    /* Subtle light gray border */
+    border-bottom: 1px solid #EDEDED;
+    font-size: 14px;
+    color: #072635;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    cursor: pointer;
+    font-weight: 500;
+    
+}
+
+.lab-results-card li:last-child {
+    border-bottom: none;
+    
+}
+
+.lab-results-card li.active {
+    /* Subtle background for the active/selected item (#F6F6F6) */
+    background-color: #F5F5F9; 
+    font-weight: 700; /* Bold for active item */
+    /* Remove default list padding and align it perfectly */
+    margin: 0 -24px;
+    padding: 10px 24px; 
+   
+}
+
+.lab-results-card .download-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8; 
+    flex-shrink: 0;
+}
+
+/* --- Webkit Scrollbar Styling (For perfect match on Chrome/Safari) --- */
+/* This is essential for matching the thin, subtle scrollbar in the design images */
+.patient-list-card::-webkit-scrollbar,
+.lab-results-scroll::-webkit-scrollbar,
+.diagnostic-list-card tbody::-webkit-scrollbar {
+    width: 6px;
+}
+
+.patient-list-card::-webkit-scrollbar-thumb,
+.lab-results-scroll::-webkit-scrollbar-thumb,
+.diagnostic-list-card tbody::-webkit-scrollbar-thumb {
+    background-color:#072635; 
+    border-radius: 3px;
+}
+.patient-list-card::-webkit-scrollbar-track,
+.lab-results-scroll::-webkit-scrollbar-track,
+.diagnostic-list-card tbody::-webkit-scrollbar-track {
+    background: #E3E4E6; 
+}
+/* ===========================================================
+   ★ ABSOLUTE POSITIONING LAYOUT TO MATCH ADOBE XD EXACTLY ★
+   =========================================================== */
+
+body {
+    width: 1600px;
+    height: 1195px;
+    background: #F6F7F8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- TOP NAV BAR --- */
+.sidebar {
+    position: absolute;
+    top: 0%;
+    left: 0.2%;
+    width: 1520px;
+    height: 72px;
+    border-radius: 70px;
+}
+
+/* --- LEFT PATIENT LIST --- */
+.patient-list-card {
+    position: absolute;
+    top: 122px;
+    left: 18px;
+    width: 337px;
+    height: 1022px;
+    border-radius: 16px;
+    overflow-y: auto;
+}
+
+/* --- DIAGNOSIS HISTORY --- */
+.diagnosis-history-card {
+    position: absolute;
+    top: 122px;
+    left: 390px;
+    width: 737px;
+    height: 673px;
+    border-radius: 16px;
+}
+
+/* --- DIAGNOSTIC LIST --- */
+.diagnostic-list-card {
+    position: absolute;
+    top: 832px;
+    left: 390px;
+    width: 737px;
+    height: 349px;
+    border-radius: 16px;
+     flex-grow: 0;
+    flex-shrink: 0;
+}
+
+/* --- RIGHT PROFILE CARD --- */
+.profile-card {
+    position: absolute;
+    top: 105px;
+    left: 1165px;
+    width: 337px;
+    height: 740px;
+    border-radius: 16px;
+}
+
+/* --- LAB RESULTS --- */
+.lab-results-card {
+    position: absolute;
+    top: 885px;
+    left: 1165px;
+    width: 337px;
+    height: 296px;
+    border-radius: 16px;
+}
+
